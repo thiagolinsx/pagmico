@@ -1,0 +1,23 @@
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="/">Tealeaf Todo</a></h1>
+    </li>
+
+    <li class="toggle-topbar">
+      <a href="#"><span>Menu</span></a>
+    </li>
+  </ul>
+
+  <section class="top-bar-section">
+    <ul class="right">
+      <li class="has-dropdown no-click">
+        <a href="#">Menu</a>
+        <ul class="dropdown">
+          <li><a href="#">Login</a></li>
+          <li><%= link_to "Create a todo", new_todo_path %></li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</nav>

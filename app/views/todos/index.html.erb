@@ -1,0 +1,46 @@
+<dl class="tabs" data-tab data-options="deep_linking: true">
+  <dd class="active">
+    <%= link_to 'View list', todos_path %>
+  </dd>
+  <dd>
+    <%= link_to 'New todo', new_todo_path %>
+  </dd>
+</dl>
+
+<h1>Listing todos</h1>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Notes</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @todos.each do |todo| %>
+  <tr>
+    <td>
+        <span data-tooltip aria-haspopup="true" class="has-tip tip-left" title="<%= "Created on #{todo.created_at.strftime("%d/%m/%Y at %w:%M %p")}, Last modified on #{todo.updated_at.strftime("%d/%m/%Y at %w:%M %p")}" %>">
+            <%= todo.title %>
+        </span>
+    </td>
+    <td>
+      <% if todo.notes? %>
+          <a href="#" data-reveal-id="todo-<%= todo.id %>-notes">View notes</a>
+
+          <div id="todo-<%= todo.id %>-notes" class="reveal-modal" data-reveal>
+            <%= todo.notes %>
+            <a class="close-reveal-modal">&#215;</a>
+          </div>
+      <% end %>
+    </td>
+    <td><%= link_to '', todo, :class => 'fi-book' %></td>
+    <td><%= link_to '', edit_todo_path(todo), :class => 'button tiny radius' %></td>
+    <td><%= link_to '', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'button tiny radius' %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Todo', new_todo_path, :class => 'button success radius small' %>
